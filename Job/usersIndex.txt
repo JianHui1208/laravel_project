@@ -1,0 +1,252 @@
+<!-- <div class="card">
+    <div class="card-header row" style="margin-left: 0px; margin-right: 0px;">
+        <div class="col-sm-3" style="text-align: center;"><a href="#admin" onclick="admin()">Admins List</a></div>
+        <div class="col-sm-3" style="text-align: center;"><a href="#student" onclick="student()">Students List</a></div>
+        <div class="col-sm-3" style="text-align: center;"><a href="#company" onclick="company()">Company List</a></div>
+        <div class="col-sm-3" style="text-align: center;"><a href="#lecturer" onclick="lecturer()">Lecturers List</a></div>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive" id="admin">
+            Admin Card Body
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="30">
+                            {{ trans('cruds.user.fields.id') }}
+                        </th>
+                        <th style="min-width:100px; max-width:100px;">
+                            Company Name
+                        </th>
+                        <th>
+                            Content Name
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.email') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.roles') }}
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($admins as $key => $admin)
+                    <tr>
+                        <td>
+                            {{ $loop->index+1 }}
+                        </td>
+                        <td>
+                            {{ $admin->FristName ?? '' }}
+                        </td>
+                        <td>
+                            {{ $admin->LastName ?? '' }}
+                        </td>
+                        <td>
+                            {{ $admin->email ?? '' }}
+                        </td>
+                        <td>
+                            <span class="badge badge-info">Admin</span>
+                        </td>
+                        <td style="width: 210px;">
+                            @can('user_delete')
+                            <form action="{{ route('admin.users.destroy', $admin->id) }}" method="POST"
+                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                style="display: inline-block;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                            </form>
+                            @endcan
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive" id="student" style="display: none;">
+            Students Card Body
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="30">
+                            {{ trans('cruds.user.fields.id') }}
+                        </th>
+                        <th style="min-width:100px;max-width:100px;">
+                            Frist Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.email') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.roles') }}
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($students as $key => $student)
+                    <tr>
+                        <td>
+                            {{ $loop->index+1 }}
+                        </td>
+                        <td>
+                            {{ $student->FristName ?? '' }}
+                        </td>
+                        <td>
+                            {{ $student->LastName ?? '' }}
+                        </td>
+                        <td>
+                            {{ $student->email ?? '' }}
+                        </td>
+                        <td>
+                            <span class="badge badge-info">Student</span>
+                        </td>
+                        <td style="width: 210px;">
+
+                            @can('user_delete')
+                            <form action="{{ route('admin.users.destroy', $student->id) }}" method="POST"
+                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                style="display: inline-block;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                            </form>
+                            @endcan
+
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive" id="company" style="display: none;">
+            Company Car Body
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="30">
+                            {{ trans('cruds.user.fields.id') }}
+                        </th>
+                        <th style="min-width:100px;max-width:100px;">
+                            Frist Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.email') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.roles') }}
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($companies as $key => $company)
+                    <tr>
+                        <td>
+                            {{ $loop->index+1 }}
+                        </td>
+                        <td>
+                            {{ $company->FristName ?? '' }}
+                        </td>
+                        <td>
+                            {{ $company->LastName ?? '' }}
+                        </td>
+                        <td>
+                            {{ $company->email ?? '' }}
+                        </td>
+                        <td>
+                            <span class="badge badge-info">Company</span>
+                        </td>
+                        <td style="width: 210px;">
+
+                            @can('user_delete')
+                            <form action="{{ route('admin.users.destroy', $company->id) }}" method="POST"
+                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                style="display: inline-block;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                            </form>
+                            @endcan
+
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive" id="lecturer" style="display: none;">
+            Lecturer Card Body
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="30">
+                            {{ trans('cruds.user.fields.id') }}
+                        </th>
+                        <th style="min-width:100px;max-width:100px;">
+                            Frist Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.email') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.roles') }}
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($lecturers as $key => $lecturer)
+                    <tr>
+                        <td>
+                            {{ $loop->index+1 }}
+                        </td>
+                        <td>
+                            {{ $lecturer->FristName ?? '' }}
+                        </td>
+                        <td>
+                            {{ $lecturer->LastName ?? '' }}
+                        </td>
+                        <td>
+                            {{ $lecturer->email ?? '' }}
+                        </td>
+                        <td>
+                            <span class="badge badge-info">Lecturer</span>
+                        </td>
+                        <td style="width: 210px;">
+
+                            @can('user_delete')
+                            <form action="{{ route('admin.users.destroy', $lecturer->id) }}" method="POST"
+                                onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                style="display: inline-block;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                            </form>
+                            @endcan
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->

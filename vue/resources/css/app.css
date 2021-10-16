@@ -1,0 +1,23 @@
+.headerP{
+    color:#ffff00; 
+    padding:15px; 
+    text-decoration:none; 
+    background-color:#b39ddb; 
+    position:center;
+    word-spacing:0.2em;
+}
+
+.headerSection{
+    background-color: #e53935;
+}
+
+.headerH2{
+    font-size:5em; 
+    text-align: center; 
+    background-color: #e53935;
+}
+
+.headerDiv{
+    padding-left: 400px; 
+    font-size:36px;
+}
